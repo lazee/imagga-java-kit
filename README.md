@@ -6,23 +6,6 @@ it will do its best to serve you well.
 
 Make sure to read the Imagga Technical Documentation before using this package : http://imagga.com/api/docs/index.html
 
-Use with Maven
---------------
-This library haven't been released yet. So at the moment you will have to clone the source code and build the package 
-manually with Maven 3. This documentation will be updated as soon as we have a release.
-
-But this is what you should include in your project pom (Version will change of course)
-
-```xml
-<dependencies>
-  <dependency>
-    <groupId>net.jakobnielsen.imagga-java-kit</groupId>
-    <artifactId>crop-slice</artifactId>
-    <version>0.1-SNAPSHOT</version>
-  </dependency>
-</dependencies>
-```
-
 Using the Imagga Smart Cropping and Collage Slicing API
 -------------------------------------------------------
 Please read the Imagga documentation for this API before continuing (http://imagga.com/api/docs/smart-cropping-collage-slicing.html)
@@ -47,4 +30,21 @@ CropSliceAPIClient client = new CropSliceAPIClient(myApiKey, myApiSecret, myApiE
 
 List<DivisionRegion> divisionRegions = client.divisionRegionsByUrls(
                 Arrays.asList("http://www.jakobnielsen.net/etc/images/cool-cartoon-291732.png"));
+```
+
+Use with Maven
+--------------
+This library haven't been released yet. So at the moment you will have to clone the source code and build the package 
+manually with Maven 3. This documentation will be updated as soon as we have a release.
+
+But this is what you should include in your project pom (Version will change of course)
+
+```xml
+<dependencies>
+  <dependency>
+    <groupId>net.jakobnielsen.imagga-java-kit</groupId>
+    <artifactId>crop-slice</artifactId>
+    <version>0.1-SNAPSHOT</version>
+  </dependency>
+</dependencies>
 ```
