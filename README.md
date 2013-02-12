@@ -38,3 +38,13 @@ List<SmartCropping> smartCroppings = client.smartCroppingByUrls(
                 Arrays.asList("http://www.jakobnielsen.net/etc/images/cool-cartoon-291732.png"),
                 Arrays.asList("50", "50", "150", "120"), true);
 ```
+
+### Collage Slicing API call
+
+```java
+// Initialize the client with the configuration you have received from Imagga.
+CropSliceAPIClient client = new CropSliceAPIClient(myApiKey, myApiSecret, myApiEndpoint);
+
+List<DivisionRegion> divisionRegions = client.divisionRegionsByUrls(
+                Arrays.asList("http://www.jakobnielsen.net/etc/images/cool-cartoon-291732.png"));
+```
