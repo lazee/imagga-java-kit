@@ -1,0 +1,38 @@
+{
+    "smart_croppings": [
+        {
+            "url": "http:\/\/www.jakobnielsen.net\/etc\/images\/cool-cartoon-291732.png",
+            "croppings": [
+                {
+                    "target_width": "50",
+                    "target_height": "49",
+                    "x1": 364,
+                    "y1": 179,
+                    "x2": 414,
+                    "y2": 229
+                },
+                {
+                    "target_width": "51",
+                    "target_height": "51",
+                    "x1": 365,
+                    "y1": 180,
+                    "x2": 415,
+                    "y2": 230
+                }
+            ]
+        },
+        {
+            "url": "http:\/\/www.jakobnielsen.net\/etc\/images\/cool-cartoon-291733.png",
+            "croppings": [
+                {
+                    "target_width": "52",
+                    "target_height": "52",
+                    "x1": 366,
+                    "y1": 181,
+                    "x2": 416,
+                    "y2": 231
+                }
+            ]
+        }
+    ]
+}

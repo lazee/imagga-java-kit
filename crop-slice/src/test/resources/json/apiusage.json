@@ -1,0 +1,28 @@
+{"api_usage": {
+    "start_time": {
+        "UNIX": 1359669600,
+        "human_readable": "2013-02-01T00:00:00+02:00"
+    },
+    "end_time": {
+        "UNIX": 1360649311,
+        "human_readable": "2013-02-12T08:08:31+02:00"
+    },
+
+    "F1_usage": {
+        "count": "133",
+        "total_price": "1.995"
+    },
+    "F2_usage": {
+        "count": "26",
+        "total_price": "0.52"
+    },
+    "F2_additional_usage": {
+        "count": "74",
+        "total_price": "0.2442"
+    },
+    "F5_usage": {
+        "count": "9",
+        "total_price": "0"
+    },
+    "total_payable": 2.7592
+}}
