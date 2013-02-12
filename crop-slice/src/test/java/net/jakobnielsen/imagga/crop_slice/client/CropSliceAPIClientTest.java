@@ -13,7 +13,7 @@ public class CropSliceAPIClientTest {
     @Before
     public void setUp() {
         cropSliceAPIClient =
-                new CropSliceAPIClient("acc_c652fbf4", "86ff1ad250b3040277012ce279c94cca", "78.128.78.162");
+                new CropSliceAPIClient("", "", "");
     }
 
     @Test
