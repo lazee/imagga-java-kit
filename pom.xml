@@ -5,10 +5,10 @@
     <groupId>net.jakobnielsen</groupId>
     <artifactId>imagga-java-kit</artifactId>
     <version>0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
     <name>imagga-java-kit</name>
     <description>Imagga Java Kit</description>
     <url>https://github.com/lazee/imagga-java-kit</url>
+    <packaging>jar</packaging>
 
     <licenses>
         <license>
@@ -95,33 +95,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <modules>
-        <module>core</module>
-        <module>crop-slice</module>
-        <module>color</module>
-    </modules>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>net.jakobnielsen.imagga-java-kit</groupId>
-                <artifactId>core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>net.jakobnielsen.imagga-java-kit</groupId>
-                <artifactId>crop-slice</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.googlecode.json-simple</groupId>
-                <artifactId>json-simple</artifactId>
-                <version>1.1.1</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
