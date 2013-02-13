@@ -1,13 +1,14 @@
 package net.jakobnielsen.imagga.crop_slice.convert;
 
 import junit.framework.Assert;
-import net.jakobnielsen.imagga.ConverterException;
+import net.jakobnielsen.imagga.convert.ConverterException;
 import net.jakobnielsen.imagga.crop_slice.bean.ApiUsage;
 import net.jakobnielsen.imagga.crop_slice.bean.Usage;
+import net.jakobnielsen.imagga.test.AbstractConverterTester;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ApiUsageConverterTest extends AbstractConverterTester{
+public class ApiUsageConverterTest extends AbstractConverterTester {
 
     private String JSON;
 

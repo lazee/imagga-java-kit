@@ -1,4 +1,4 @@
-package net.jakobnielsen.imagga.crop_slice.convert;
+package net.jakobnielsen.imagga.test;
 
 import java.io.InputStream;
 

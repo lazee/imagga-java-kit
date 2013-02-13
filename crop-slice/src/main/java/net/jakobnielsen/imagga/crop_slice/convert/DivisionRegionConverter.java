@@ -1,6 +1,7 @@
 package net.jakobnielsen.imagga.crop_slice.convert;
 
-import net.jakobnielsen.imagga.ConverterException;
+import net.jakobnielsen.imagga.convert.Converter;
+import net.jakobnielsen.imagga.convert.ConverterException;
 import net.jakobnielsen.imagga.crop_slice.bean.DivisionRegion;
 import net.jakobnielsen.imagga.crop_slice.bean.Region;
 import org.json.simple.JSONArray;

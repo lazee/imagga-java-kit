@@ -18,24 +18,19 @@ import java.util.Map;
 
 public class APIClient {
 
-    private static final String API_KEY_PARAM = "api_key";
-
-    private static final String VERSION_PARAM = "v";
-
-    private static final String SIGNATURE_PARAM = "sig";
-
-    private static final String CHARSET = "UTF-8";
-
     private final String apiKey;
 
     private final String apiSecret;
 
     private final String apiEndpoint;
 
-    protected APIClient(String apiKey, String apiSecret, String apiEndpoint) {
+    private final String apiService;
+
+    protected APIClient(String apiKey, String apiSecret, String apiEndpoint, String apiService) {
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
         this.apiEndpoint = apiEndpoint;
+        this.apiService = apiService;
     }
 
     String getApiUrl() {
@@ -50,8 +45,12 @@ public class APIClient {
         return apiSecret;
     }
 
+    String getApiService() {
+        return apiService;
+    }
+
     String getServerAddr() {
-        return getApiUrl() + "/extractionrestserver.php";
+        return getApiUrl() + "/" + getApiService() + ".php";
     }
 
     protected String callMethod(Method method) throws APIClientException {
@@ -65,7 +64,7 @@ public class APIClient {
             connection.setInstanceFollowRedirects(false);
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            connection.setRequestProperty("Charset", CHARSET);
+            connection.setRequestProperty("Charset", ApiConstants.CHARSET);
             connection.setRequestProperty("Content-Length", "" + Integer.toString(postString.getBytes().length));
             connection.setRequestProperty("User-Agent", "Crop & Slice API JAVA Client");
             connection.setUseCaches(false);
@@ -124,15 +123,15 @@ public class APIClient {
     String createPostString(Method method) throws UnsupportedEncodingException {
         List<String> postParams = new ArrayList<String>();
 
-        method.addParam(API_KEY_PARAM, getApiKey());
-        if (!method.hasParam(VERSION_PARAM)) {
-            method.addParam(VERSION_PARAM, "1.0");
+        method.addParam(ApiConstants.API_KEY_PARAM, getApiKey());
+        if (!method.hasParam(ApiConstants.VERSION_PARAM)) {
+            method.addParam(ApiConstants.VERSION_PARAM, "1.0");
         }
         for (String name : method.getParams().keySet()) {
             List<String> paramList = method.getParam(name);
-            postParams.add(name + "=" + URLEncoder.encode(implode(paramList, ","), CHARSET));
+            postParams.add(name + "=" + URLEncoder.encode(implode(paramList, ","), ApiConstants.CHARSET));
         }
-        postParams.add(SIGNATURE_PARAM + "=" + generateSig(method.getParams()));
+        postParams.add(ApiConstants.SIGNATURE_PARAM + "=" + generateSig(method.getParams()));
         return implode(postParams, "&");
     }
 
@@ -156,7 +155,7 @@ public class APIClient {
         StringWriter result = new StringWriter();
         try {
             MessageDigest md5 = MessageDigest.getInstance("MD5");
-            md5.update(str.toString().getBytes(CHARSET));
+            md5.update(str.toString().getBytes(ApiConstants.CHARSET));
             byte[] hashValue = md5.digest();
             for (byte aHashValue : hashValue) {
                 String word = Integer.toString(aHashValue & 0xff, 16).toUpperCase();

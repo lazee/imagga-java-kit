@@ -13,7 +13,10 @@ public class CropSliceAPIClientTest {
     @Before
     public void setUp() {
         cropSliceAPIClient =
-                new CropSliceAPIClient("", "", "");
+                new CropSliceAPIClient(
+                        System.getenv("IMAGGA_KEY"),
+                        System.getenv("IMAGGA_SECRET"),
+                        System.getenv("IMAGGA_ENDPOINT"));
     }
 
     @Test

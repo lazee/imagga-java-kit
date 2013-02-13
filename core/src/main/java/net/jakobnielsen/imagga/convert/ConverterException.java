@@ -1,4 +1,6 @@
-package net.jakobnielsen.imagga;
+package net.jakobnielsen.imagga.convert;
+
+import net.jakobnielsen.imagga.ImaggaException;
 
 public class ConverterException extends ImaggaException {
 

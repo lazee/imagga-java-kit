@@ -1,6 +1,7 @@
 package net.jakobnielsen.imagga.crop_slice.client;
 
 import net.jakobnielsen.imagga.client.APIClient;
+import net.jakobnielsen.imagga.client.ApiConstants;
 import net.jakobnielsen.imagga.client.Method;
 import net.jakobnielsen.imagga.crop_slice.bean.ApiUsage;
 import net.jakobnielsen.imagga.crop_slice.bean.DivisionRegion;
@@ -23,14 +24,12 @@ public class CropSliceAPIClient extends APIClient {
 
     private static final String NO_SCALING = "no_scaling";
 
-    private static final String URLS = "urls";
-
     private static final String START = "start";
 
     private static final String END = "end";
 
     public CropSliceAPIClient(String apiKey, String apiSecret, String apiEndpoint) {
-        super(apiKey, apiSecret, apiEndpoint);
+        super(apiKey, apiSecret, apiEndpoint, "extractionrestserver");
     }
 
     /**
@@ -44,7 +43,7 @@ public class CropSliceAPIClient extends APIClient {
     public List<DivisionRegion> divisionRegionsByUrls(List<String> urlsToProcess) {
         DivisionRegionConverter converter = new DivisionRegionConverter();
         Method method = new Method(METHOD_PROCESS_DIVISION);
-        method.addParam(URLS, urlsToProcess);
+        method.addParam(ApiConstants.URLS, urlsToProcess);
         return converter.convert(callMethod(method));
     }
 
@@ -59,7 +58,7 @@ public class CropSliceAPIClient extends APIClient {
     public List<SmartCropping> smartCroppingByUrls(List<String> urlsToProcess, List<String> resolutionsList, boolean noScaling) {
         SmartCroppingConverter converter = new SmartCroppingConverter();
         Method method = new Method(METHOD_PROCESS_CROP);
-        method.addParam(URLS, urlsToProcess);
+        method.addParam(ApiConstants.URLS, urlsToProcess);
         method.addParam(RESOLUTIONS, resolutionsList);
         method.addParam(NO_SCALING, noScaling ? "1" : "0");
         return converter.convert(callMethod(method));
