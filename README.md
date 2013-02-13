@@ -2,7 +2,7 @@ Imagga Java Kit
 ===============
 
 **Current status : Support for Smart Cropping and Collage Slicing is added. Support for the Color Matching API will be added soon. 
-The firste public release will be made available during March 2013.**
+The first public release will be made available during March 2013.**
 
 
 This toolkit is a Java wrapper around the Imagga (http://imagga.com) Rest APIs. It comes with no guarantees other than
