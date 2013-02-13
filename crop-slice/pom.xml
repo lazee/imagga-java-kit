@@ -11,6 +11,8 @@
 
     <groupId>net.jakobnielsen.imagga-java-kit</groupId>
     <artifactId>crop-slice</artifactId>
+    <name>imagga-java-kit-crop-slice</name>
+    <description>Imagga Java Kit - Crop Slice Client</description>
 
     <dependencies>
         <dependency>

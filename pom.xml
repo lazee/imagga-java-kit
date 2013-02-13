@@ -6,6 +6,16 @@
     <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>imagga-java-kit</name>
+    <description>Imagga Java Kit</description>
+    <url>https://github.com/lazee/imagga-java-kit</url>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <scm>
         <url>https://github.com/lazee/imagga-java-kit</url>
@@ -13,7 +23,6 @@
         <developerConnection>scm:git:git@github.com:lazee/imagga-java-kit.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
-
 
     <developers>
         <developer>
@@ -29,7 +38,6 @@
     </properties>
 
     <modules>
-
         <module>core</module>
         <module>crop-slice</module>
         <module>examples</module>

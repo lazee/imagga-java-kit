@@ -11,6 +11,8 @@
 
     <groupId>net.jakobnielsen.imagga-java-kit</groupId>
     <artifactId>core</artifactId>
+    <name>imagga-java-kit-core</name>
+    <description>Imagga Java Kit - Core</description>
 
     <dependencies>
 

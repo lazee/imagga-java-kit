@@ -11,6 +11,8 @@
 
     <groupId>net.jakobnielsen.imagga</groupId>
     <artifactId>examples</artifactId>
+    <name>imagga-java-kit-examples</name>
+    <description>Imagga Java Kit - Examples</description>
 
     <dependencies>
         <dependency>
@@ -18,4 +20,5 @@
             <artifactId>crop-slice</artifactId>
         </dependency>
     </dependencies>
+
 </project>
