@@ -1,8 +1,7 @@
 Imagga Java Kit
 ===============
 
-**Current status : Support for Smart Cropping and Collage Slicing is added. Support for the Color Matching API will be added soon. 
-The first public release will be made available during March 2013.**
+**Current status : Support for Smart Cropping and Collage Slicing is added, as well as the Color Extraction API. The package will be released as soone as support for the Color Search API is added**
 
 
 This toolkit is a Java wrapper around the Imagga (http://imagga.com) Rest APIs. It comes with no guarantees other than
@@ -35,6 +34,24 @@ CropSliceAPIClient client = new CropSliceAPIClient(myApiKey, myApiSecret, myApiE
 List<DivisionRegion> divisionRegions = client.divisionRegionsByUrls(
                 Arrays.asList("http://www.jakobnielsen.net/etc/images/cool-cartoon-291732.png"));
 ```
+
+Using the Imagga Color Extraction and Multi-Color Search API
+------------------------------------------------------------
+
+### Color Extraction API call
+
+```java
+// Initialize the client with the configuration you have received from Imagga.
+ColorAPIClient client = new ColorAPIClient(myApiKey, myApiSecret, myApiEndpoint);
+
+List<ColorResult> colorResults = client.colorsByUrls(Arrays.asList("http://www.jakobnielsen.net/etc/images/cool-cartoon-291732.png", 
+"http://www.toondoo.com/public/l/a/z/lazee/toons/cool-cartoon-152229.png"));
+```
+
+### Multi-Color Search API
+
+Support for this API is not implemented into the package yet. This will be done soon.
+
 
 Use with Maven
 --------------
