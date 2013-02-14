@@ -1,7 +1,8 @@
 Imagga Java Kit
 ===============
 
-**Current status : Support for Smart Cropping and Collage Slicing is added, as well as the Color Extraction API. The package will be released as soone as support for the Color Search API is added**
+**Current status : Support for Smart Cropping and Collage Slicing is added, as well as the Color Extraction API. 
+The package will be released as soon as we have implemented the Color Search API**
 
 
 This toolkit is a Java wrapper around the Imagga (http://imagga.com) Rest APIs. It comes with no guarantees other than
