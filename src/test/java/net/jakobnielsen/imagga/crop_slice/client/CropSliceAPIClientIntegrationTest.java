@@ -8,34 +8,33 @@ import java.util.Arrays;
 
 public class CropSliceAPIClientIntegrationTest {
 
-    private CropSliceAPIClient cropSliceAPIClient;
+    private CropSliceAPIClient client;
 
     @Before
     public void setUp() {
-        cropSliceAPIClient =
-                new CropSliceAPIClient(
-                        System.getenv("IMAGGA_KEY"),
-                        System.getenv("IMAGGA_SECRET"),
-                        System.getenv("IMAGGA_ENDPOINT"));
+        client = new CropSliceAPIClient(
+                System.getenv("IMAGGA_KEY"),
+                System.getenv("IMAGGA_SECRET"),
+                System.getenv("IMAGGA_ENDPOINT"));
     }
 
     @Test
     public void testDivisionRegionsByUrls() {
-        cropSliceAPIClient.divisionRegionsByUrls(
+        client.divisionRegionsByUrls(
                 Arrays.asList("http://www.jakobnielsen.net/etc/images/cool-cartoon-291732.png"));
 
     }
 
     @Test
     public void testSmartCroppingByUrls() {
-        cropSliceAPIClient.smartCroppingByUrls(
+        client.smartCroppingByUrls(
                 Arrays.asList("http://www.jakobnielsen.net/etc/images/cool-cartoon-291732.png"),
                 Arrays.asList("50", "50"), true);
     }
 
     @Test
     public void testGetApiUsage() {
-        ApiUsage apiUsage = cropSliceAPIClient.apiUsage(0, 0);
+        ApiUsage apiUsage = client.apiUsage(0, 0);
         System.out.println(apiUsage.toString());
     }
 

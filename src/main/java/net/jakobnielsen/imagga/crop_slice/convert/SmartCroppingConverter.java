@@ -12,6 +12,10 @@ import org.json.simple.JSONValue;
 import java.util.ArrayList;
 import java.util.List;
 
+import static net.jakobnielsen.imagga.convert.ConverterTools.getInteger;
+import static net.jakobnielsen.imagga.convert.ConverterTools.getLong;
+import static net.jakobnielsen.imagga.convert.ConverterTools.getString;
+
 public class SmartCroppingConverter implements Converter<List<SmartCropping>> {
 
     private static final String SMART_CROPPINGS = "smart_croppings";
@@ -36,7 +40,7 @@ public class SmartCroppingConverter implements Converter<List<SmartCropping>> {
 
             JSONObject smartCroppingObject = (JSONObject) aJsonArray;
 
-            String url = (String) smartCroppingObject.get("url");
+            String url = getString("url", smartCroppingObject);
 
             List<Cropping> croppings = new ArrayList<Cropping>();
 
@@ -49,13 +53,13 @@ public class SmartCroppingConverter implements Converter<List<SmartCropping>> {
                     JSONObject croppingObject = (JSONObject) aCroppingsArray;
 
                     croppings.add(new Cropping(
-                            Integer.valueOf((String) croppingObject.get("target_width")),
-                            Integer.valueOf((String) croppingObject.get("target_height")),
+                            getInteger("target_width", croppingObject),
+                            getInteger("target_height", croppingObject),
                             new Region(
-                                    (Long) croppingObject.get("x1"),
-                                    (Long) croppingObject.get("y1"),
-                                    (Long) croppingObject.get("x2"),
-                                    (Long) croppingObject.get("y2")
+                                    getLong("x1", croppingObject),
+                                    getLong("y1", croppingObject),
+                                    getLong("x2", croppingObject),
+                                    getLong("y2", croppingObject)
                             )));
                 }
                 smartCroppings.add(new SmartCropping(url, croppings));
@@ -64,4 +68,6 @@ public class SmartCroppingConverter implements Converter<List<SmartCropping>> {
 
         return smartCroppings;
     }
+
+
 }

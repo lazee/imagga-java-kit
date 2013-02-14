@@ -11,6 +11,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import static net.jakobnielsen.imagga.convert.ConverterTools.getDouble;
+import static net.jakobnielsen.imagga.convert.ConverterTools.getLong;
+
 public class ApiUsageConverter implements Converter<ApiUsage> {
 
     public static final String API_USAGE = "api_usage";
@@ -46,20 +49,19 @@ public class ApiUsageConverter implements Converter<ApiUsage> {
             if ("start_time".equals(key)) {
                 JSONObject value = (JSONObject) json.get(key);
                 if (value.containsKey(UNIX)) {
-                    startTime = new Date((Long) value.get(UNIX));
+                    startTime = new Date(getLong(UNIX, value));
                 }
             } else if ("end_time".equals(key)) {
                 JSONObject value = (JSONObject) json.get(key);
                 if (value.containsKey(UNIX)) {
-                    endTime = new Date((Long) value.get(UNIX));
+                    endTime = new Date(getLong(UNIX, value));
                 }
             } else if ("total_payable".equals(key)) {
-                totalPayable = (Double) json.get(key);
+                totalPayable = getDouble(key, json);
             } else {
                 JSONObject value = (JSONObject) json.get(key);
                 if (value.containsKey(COUNT)) {
-                    usageMap.put(key, new Usage(Long.valueOf((String) value.get(COUNT)), Double.parseDouble(
-                            (String) value.get("total_price"))));
+                    usageMap.put(key, new Usage(getLong(COUNT, value), getDouble("total_price", value)));
                 }
             }
         }

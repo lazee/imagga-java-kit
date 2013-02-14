@@ -11,6 +11,9 @@ import org.json.simple.JSONValue;
 import java.util.ArrayList;
 import java.util.List;
 
+import static net.jakobnielsen.imagga.convert.ConverterTools.getLong;
+import static net.jakobnielsen.imagga.convert.ConverterTools.getString;
+
 public class DivisionRegionConverter implements Converter<List<DivisionRegion>> {
 
     public static final String DIVISION_REGIONS = "division_regions";
@@ -34,26 +37,29 @@ public class DivisionRegionConverter implements Converter<List<DivisionRegion>> 
 
             JSONObject divisionRegionObject = (JSONObject) aJsonArray;
 
-            String url = (String) divisionRegionObject.get("url");
+            String url = getString("url", divisionRegionObject);
 
             List<Region> regions = new ArrayList<Region>();
 
             if (divisionRegionObject.containsKey(REGIONS)) {
 
-                JSONArray regionsArrays = (JSONArray) divisionRegionObject.get(REGIONS);
+                if (divisionRegionObject.get(REGIONS) != null &&
+                        divisionRegionObject.get(REGIONS) instanceof JSONArray) {
+                    JSONArray regionsArrays = (JSONArray) divisionRegionObject.get(REGIONS);
 
-                for (Object aRegionsArray : regionsArrays) {
+                    for (Object aRegionsArray : regionsArrays) {
 
-                    JSONObject regionObject = (JSONObject) aRegionsArray;
+                        JSONObject regionObject = (JSONObject) aRegionsArray;
 
-                    regions.add(new Region(
-                            Long.valueOf((String) regionObject.get("x1")),
-                            Long.valueOf((String) regionObject.get("y1")),
-                            Long.valueOf((String) regionObject.get("x2")),
-                            Long.valueOf((String) regionObject.get("y2"))
-                    ));
+                        regions.add(new Region(
+                                getLong("x1", regionObject),
+                                getLong("y1", regionObject),
+                                getLong("x2", regionObject),
+                                getLong("y2", regionObject)
+                        ));
+                    }
+                    divisionRegions.add(new DivisionRegion(url, regions));
                 }
-                divisionRegions.add(new DivisionRegion(url, regions));
             }
         }
 

@@ -12,6 +12,10 @@ import org.json.simple.JSONValue;
 import java.util.ArrayList;
 import java.util.List;
 
+import static net.jakobnielsen.imagga.convert.ConverterTools.getDouble;
+import static net.jakobnielsen.imagga.convert.ConverterTools.getLong;
+import static net.jakobnielsen.imagga.convert.ConverterTools.getString;
+
 public class ColorsConverter implements Converter<List<ColorResult>> {
 
     public static final String COLORS = "colors";
@@ -36,7 +40,7 @@ public class ColorsConverter implements Converter<List<ColorResult>> {
         for (Object co : jsonArray) {
 
             JSONObject colorResultJSON = (JSONObject) co;
-            String url = (String) colorResultJSON.get("url");
+            String url = getString("url", colorResultJSON);
             JSONObject infoJSON = (JSONObject) colorResultJSON.get("info");
             List<Color> imageColors = new ArrayList<Color>();
             List<Color> foregroundColors = new ArrayList<Color>();
@@ -44,19 +48,20 @@ public class ColorsConverter implements Converter<List<ColorResult>> {
             Double objectPercentage = null;
             Long colorVariance = null;
 
-            addColors( "image_colors", infoJSON, imageColors);
-            addColors( "foreground_colors", infoJSON, foregroundColors);
-            addColors( "background_colors", infoJSON, backgroundColors);
+            addColors("image_colors", infoJSON, imageColors);
+            addColors("foreground_colors", infoJSON, foregroundColors);
+            addColors("background_colors", infoJSON, backgroundColors);
 
             if (infoJSON.containsKey(OBJECT_PERCENTAGE)) {
-                objectPercentage = (Double) infoJSON.get(OBJECT_PERCENTAGE);
+                objectPercentage = getDouble(OBJECT_PERCENTAGE, infoJSON);
             }
 
             if (infoJSON.containsKey("color_variance")) {
-                colorVariance = Long.valueOf((String) infoJSON.get("color_variance"));
+                colorVariance = getLong("color_variance", infoJSON);
             }
 
-            colorResults.add(new ColorResult(url, new Info(imageColors, foregroundColors, backgroundColors, objectPercentage, colorVariance)));
+            colorResults.add(new ColorResult(url,
+                    new Info(imageColors, foregroundColors, backgroundColors, objectPercentage, colorVariance)));
         }
 
         return colorResults;
@@ -64,23 +69,29 @@ public class ColorsConverter implements Converter<List<ColorResult>> {
 
     private void addColors(String key, JSONObject infoJSON, List<Color> imageColors) {
         if (infoJSON.containsKey(key)) {
-            JSONArray colorsArrays = (JSONArray) infoJSON.get(key);
-            for (Object ac : colorsArrays) {
-                imageColors.add(createColor((JSONObject) ac));
+
+            Object colorsObject = infoJSON.get(key);
+
+            if (colorsObject instanceof JSONArray) {
+                JSONArray colorsArrays = (JSONArray) colorsObject;
+                for (Object ac : colorsArrays) {
+                    imageColors.add(createColor((JSONObject) ac));
+                }
             }
+
         }
     }
 
     private Color createColor(JSONObject colorJSON) {
         return new Color(
-                Double.valueOf((String) colorJSON.get("percent")),
-                Long.valueOf((String) colorJSON.get("r")),
-                Long.valueOf((String) colorJSON.get("g")),
-                Long.valueOf((String) colorJSON.get("b")),
-                (String) colorJSON.get("html_code"),
-                (String) colorJSON.get("closest_palette_color"),
-                (String) colorJSON.get("closest_palette_color_parent"),
-                (Double) colorJSON.get("closest_palette_distance")
+                getDouble("percent", colorJSON),
+                getLong("r", colorJSON),
+                getLong("g", colorJSON),
+                getLong("b", colorJSON),
+                getString("html_code", colorJSON),
+                getString("closest_palette_color", colorJSON),
+                getString("closest_palette_color_parent", colorJSON),
+                getDouble("closest_palette_distance", colorJSON)
         );
     }
 }
