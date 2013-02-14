@@ -64,8 +64,8 @@ But this is what you should include in your project pom (Version will change of 
 ```xml
 <dependencies>
   <dependency>
-    <groupId>net.jakobnielsen.imagga-java-kit</groupId>
-    <artifactId>crop-slice</artifactId>
+    <groupId>net.jakobnielsen</groupId>
+    <artifactId>imagga-java-kit</artifactId>
     <version>0.1-SNAPSHOT</version>
   </dependency>
 </dependencies>
