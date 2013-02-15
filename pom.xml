@@ -26,7 +26,7 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/lazee/imagga-java-kit</url>
+        <url>git@github.com:juven/git-demo.git</url>
         <connection>scm:git:git://github.com/lazee/imagga-java-kit.git</connection>
         <developerConnection>scm:git:git@github.com:lazee/imagga-java-kit.git</developerConnection>
         <tag>HEAD</tag>
