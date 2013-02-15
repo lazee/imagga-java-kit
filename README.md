@@ -14,7 +14,7 @@ Using the Imagga Smart Cropping and Collage Slicing API
 -------------------------------------------------------
 Please read the Imagga documentation for this API before continuing (http://imagga.com/api/docs/smart-cropping-collage-slicing.html)
 
-### Smart Cropping API call
+### Smart Cropping API Request
 
 ```java
 // Initialize the client with the configuration you have received from Imagga.
@@ -26,7 +26,7 @@ List<SmartCropping> smartCroppings = client.smartCroppingByUrls(
                 Arrays.asList("50", "50", "110", "100"), true);
 ```
 
-### Collage Slicing API call
+### Collage Slicing API Request
 
 ```java
 // Initialize the client with the configuration you have received from Imagga.
@@ -39,7 +39,7 @@ List<DivisionRegion> divisionRegions = client.divisionRegionsByUrls(
 Using the Imagga Color Extraction and Multi-Color Search API
 ------------------------------------------------------------
 
-### Color Extraction API call
+### Color Extraction API Request
 
 ```java
 // Initialize the client with the configuration you have received from Imagga.
@@ -54,7 +54,7 @@ request.setUrlsToProcess(Arrays.asList(
 List<ColorResult> colorResults = client.colorsByUrls(request);
 ```
 
-### Multi-Color Search API
+### Multi-Color Search API Request
 
 ```java
 // Initialize the client with the configuration you have received from Imagga.
