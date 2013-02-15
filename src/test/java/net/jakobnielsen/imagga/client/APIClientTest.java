@@ -13,7 +13,7 @@ public class APIClientTest {
 
     @Before
     public void setUp() throws Exception {
-        apiClient = new APIClient("acc_c6fbe2", "abcdef123456", "8.8.8.1", "foo");
+        apiClient = new APIClient(new APIClientConfig("acc_c6fbe2", "abcdef123456", "8.8.8.1"), "foo");
     }
 
     @Test

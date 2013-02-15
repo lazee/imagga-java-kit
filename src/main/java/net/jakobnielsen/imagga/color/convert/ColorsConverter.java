@@ -2,6 +2,7 @@ package net.jakobnielsen.imagga.color.convert;
 
 import net.jakobnielsen.imagga.color.bean.Color;
 import net.jakobnielsen.imagga.color.bean.ColorResult;
+import net.jakobnielsen.imagga.color.bean.ExtendedColor;
 import net.jakobnielsen.imagga.color.bean.Info;
 import net.jakobnielsen.imagga.convert.Converter;
 import net.jakobnielsen.imagga.convert.ConverterException;
@@ -42,9 +43,9 @@ public class ColorsConverter implements Converter<List<ColorResult>> {
             JSONObject colorResultJSON = (JSONObject) co;
             String url = getString("url", colorResultJSON);
             JSONObject infoJSON = (JSONObject) colorResultJSON.get("info");
-            List<Color> imageColors = new ArrayList<Color>();
-            List<Color> foregroundColors = new ArrayList<Color>();
-            List<Color> backgroundColors = new ArrayList<Color>();
+            List<ExtendedColor> imageColors = new ArrayList<ExtendedColor>();
+            List<ExtendedColor> foregroundColors = new ArrayList<ExtendedColor>();
+            List<ExtendedColor> backgroundColors = new ArrayList<ExtendedColor>();
             Double objectPercentage = null;
             Long colorVariance = null;
 
@@ -67,7 +68,7 @@ public class ColorsConverter implements Converter<List<ColorResult>> {
         return colorResults;
     }
 
-    private void addColors(String key, JSONObject infoJSON, List<Color> imageColors) {
+    private void addColors(String key, JSONObject infoJSON, List<ExtendedColor> imageColors) {
         if (infoJSON.containsKey(key)) {
 
             Object colorsObject = infoJSON.get(key);
@@ -82,8 +83,8 @@ public class ColorsConverter implements Converter<List<ColorResult>> {
         }
     }
 
-    private Color createColor(JSONObject colorJSON) {
-        return new Color(
+    private ExtendedColor createColor(JSONObject colorJSON) {
+        return new ExtendedColor(
                 getDouble("percent", colorJSON),
                 getLong("r", colorJSON),
                 getLong("g", colorJSON),

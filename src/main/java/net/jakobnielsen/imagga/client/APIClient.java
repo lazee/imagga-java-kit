@@ -18,31 +18,25 @@ import java.util.Map;
 
 public class APIClient {
 
-    private final String apiKey;
-
-    private final String apiSecret;
-
-    private final String apiEndpoint;
+    private final APIClientConfig apiConfig;
 
     private final String apiService;
 
-    protected APIClient(String apiKey, String apiSecret, String apiEndpoint, String apiService) {
-        this.apiKey = apiKey;
-        this.apiSecret = apiSecret;
-        this.apiEndpoint = apiEndpoint;
+    protected APIClient(APIClientConfig apiConfig, String apiService) {
+        this.apiConfig = apiConfig;
         this.apiService = apiService;
     }
 
-    String getApiUrl() {
-        return "http://" + this.apiEndpoint;
+    public String getApiUrl() {
+        return "http://" + this.apiConfig.getEndpoint();
     }
 
     String getApiKey() {
-        return apiKey;
+        return this.apiConfig.getKey();
     }
 
     String getApiSecret() {
-        return apiSecret;
+        return this.apiConfig.getSecret();
     }
 
     String getApiService() {

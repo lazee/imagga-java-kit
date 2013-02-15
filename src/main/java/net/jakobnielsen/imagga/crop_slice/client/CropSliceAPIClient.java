@@ -1,6 +1,7 @@
 package net.jakobnielsen.imagga.crop_slice.client;
 
 import net.jakobnielsen.imagga.client.APIClient;
+import net.jakobnielsen.imagga.client.APIClientConfig;
 import net.jakobnielsen.imagga.client.ApiConstants;
 import net.jakobnielsen.imagga.client.Method;
 import net.jakobnielsen.imagga.crop_slice.bean.ApiUsage;
@@ -28,8 +29,8 @@ public class CropSliceAPIClient extends APIClient {
 
     private static final String END = "end";
 
-    public CropSliceAPIClient(String apiKey, String apiSecret, String apiEndpoint) {
-        super(apiKey, apiSecret, apiEndpoint, "extractionrestserver");
+    public CropSliceAPIClient(APIClientConfig apiConfig) {
+        super(apiConfig, "extractionrestserver");
     }
 
     /**

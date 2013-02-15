@@ -4,11 +4,11 @@ import java.util.List;
 
 public class Info {
 
-    private final List<Color> imageColors;
+    private final List<ExtendedColor> imageColors;
 
-    private final List<Color> foregroundColors;
+    private final List<ExtendedColor> foregroundColors;
 
-    private final List<Color> backgroundColors;
+    private final List<ExtendedColor> backgroundColors;
 
     private final Double objectPercentage;
 
@@ -19,8 +19,8 @@ public class Info {
     //"background_packed":null
 
 
-    public Info(List<Color> imageColors, List<Color> foregroundColors,
-            List<Color> backgroundColors, Double objectPercentage, Long colorVariance) {
+    public Info(List<ExtendedColor> imageColors, List<ExtendedColor> foregroundColors,
+            List<ExtendedColor> backgroundColors, Double objectPercentage, Long colorVariance) {
         this.imageColors = imageColors;
         this.foregroundColors = foregroundColors;
         this.backgroundColors = backgroundColors;
@@ -28,15 +28,15 @@ public class Info {
         this.colorVariance = colorVariance;
     }
 
-    public List<Color> getImageColors() {
+    public List<ExtendedColor> getImageColors() {
         return imageColors;
     }
 
-    public List<Color> getForegroundColors() {
+    public List<ExtendedColor> getForegroundColors() {
         return foregroundColors;
     }
 
-    public List<Color> getBackgroundColors() {
+    public List<ExtendedColor> getBackgroundColors() {
         return backgroundColors;
     }
 
