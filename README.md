@@ -18,19 +18,19 @@ Please read the Imagga documentation for this API before continuing (http://imag
 
 ```java
 // Initialize the client with the configuration you have received from Imagga.
-CropSliceAPIClient client = new CropSliceAPIClient(myApiKey, myApiSecret, myApiEndpoint);
+CropSliceAPIClient client = new CropSliceAPIClient(new APIClientConfig(myApiKey, myApiSecret, myApiEndpoint));
 
 // Get smart croppings for the given url
 List<SmartCropping> smartCroppings = client.smartCroppingByUrls(
                 Arrays.asList("http://www.jakobnielsen.net/etc/images/cool-cartoon-291732.png"),
-                Arrays.asList("50", "50", "150", "120"), true);
+                Arrays.asList("50", "50", "110", "100"), true);
 ```
 
 ### Collage Slicing API call
 
 ```java
 // Initialize the client with the configuration you have received from Imagga.
-CropSliceAPIClient client = new CropSliceAPIClient(myApiKey, myApiSecret, myApiEndpoint);
+CropSliceAPIClient client = new CropSliceAPIClient(new APIClientConfig(myApiKey, myApiSecret, myApiEndpoint));
 
 List<DivisionRegion> divisionRegions = client.divisionRegionsByUrls(
                 Arrays.asList("http://www.jakobnielsen.net/etc/images/cool-cartoon-291732.png"));
@@ -43,16 +43,35 @@ Using the Imagga Color Extraction and Multi-Color Search API
 
 ```java
 // Initialize the client with the configuration you have received from Imagga.
-ColorAPIClient client = new ColorAPIClient(myApiKey, myApiSecret, myApiEndpoint);
+ColorAPIClient client = new ColorAPIClient(new APIClientConfig(myApiKey, myApiSecret, myApiEndpoint));
 
-List<ColorResult> colorResults = client.colorsByUrls(Arrays.asList("http://www.jakobnielsen.net/etc/images/cool-cartoon-291732.png", 
-"http://www.toondoo.com/public/l/a/z/lazee/toons/cool-cartoon-152229.png"));
+ColorsByUrlsRequest request = new ColorsByUrlsRequest();
+
+request.setUrlsToProcess(Arrays.asList(
+    new IndexableImage("http://www.jakobnielsen.net/etc/images/cool-cartoon-291732.png", 100),
+    new IndexableImage("http://www.toondoo.com/public/l/a/z/lazee/toons/cool-cartoon-152229.png", 101)));
+
+List<ColorResult> colorResults = client.colorsByUrls(request);
 ```
 
 ### Multi-Color Search API
 
-Support for this API is not implemented into the package yet. This will be done soon.
+```java
+// Initialize the client with the configuration you have received from Imagga.
+ColorAPIClient client = new ColorAPIClient(new APIClientConfig(myApiKey, myApiSecret, myApiEndpoint));
 
+RankSimilarColorRequest request = new RankSimilarColorRequest();
+
+request.setColorIndexType(ColorIndexType.OVERALL);
+request.setColorVector(Arrays.asList(
+    new Color(60, 255, 0, 0),
+    new Color(40, 0, 255, 0)
+));
+request.setCount(10);
+request.setDist(12);
+
+List<RankSimilarity> rankSimilarities = client.rankSimilarColor(request);
+```
 
 Use with Maven
 --------------
