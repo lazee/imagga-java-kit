@@ -34,9 +34,9 @@ import static net.jakobnielsen.imagga.convert.ConverterTools.getString;
 
 public class ColorsConverter implements Converter<List<ColorResult>> {
 
-    public static final String COLORS = "colors";
+    private static final String COLORS = "colors";
 
-    public static final String OBJECT_PERCENTAGE = "object_percentage";
+    private static final String OBJECT_PERCENTAGE = "object_percentage";
 
     @Override
     public List<ColorResult> convert(String jsonString) {

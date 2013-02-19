@@ -32,11 +32,11 @@ import static net.jakobnielsen.imagga.convert.ConverterTools.getLong;
 
 public class ApiUsageConverter implements Converter<ApiUsage> {
 
-    public static final String API_USAGE = "api_usage";
+    private static final String API_USAGE = "api_usage";
 
-    public static final String UNIX = "UNIX";
+    private static final String UNIX = "UNIX";
 
-    public static final String COUNT = "count";
+    private static final String COUNT = "count";
 
     @Override
     public ApiUsage convert(String jsonString) {

@@ -26,9 +26,9 @@ import java.util.Properties;
  */
 public class APIClientConfig {
 
-    public static final int DEFAULT_TIMEOUT = 10000;
+    private static final int DEFAULT_TIMEOUT = 10000;
 
-    public static final int NO_TIMEOUT = 0;
+    private static final int NO_TIMEOUT = 0;
 
     private final String key;
 

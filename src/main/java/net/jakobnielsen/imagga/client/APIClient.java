@@ -37,9 +37,9 @@ import static net.jakobnielsen.imagga.ListTools.implode;
 
 public class APIClient {
 
-    public static final String TRUE_VALUE = "1";
+    protected static final String TRUE_VALUE = "1";
 
-    public static final String FALSE_VALUE = "0";
+    protected static final String FALSE_VALUE = "0";
 
     private final APIClientConfig apiConfig;
 
@@ -50,7 +50,7 @@ public class APIClient {
         this.apiService = apiService;
     }
 
-    public String getApiUrl() {
+    String getApiUrl() {
         return "http://" + this.apiConfig.getEndpoint();
     }
 

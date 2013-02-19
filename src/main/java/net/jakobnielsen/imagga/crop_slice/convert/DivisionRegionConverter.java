@@ -32,9 +32,9 @@ import static net.jakobnielsen.imagga.convert.ConverterTools.getString;
 
 public class DivisionRegionConverter implements Converter<List<DivisionRegion>> {
 
-    public static final String DIVISION_REGIONS = "division_regions";
+    private static final String DIVISION_REGIONS = "division_regions";
 
-    public static final String REGIONS = "regions";
+    private static final String REGIONS = "regions";
 
     @Override
     public List<DivisionRegion> convert(String jsonString) {

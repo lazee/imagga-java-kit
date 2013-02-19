@@ -31,7 +31,7 @@ import static net.jakobnielsen.imagga.convert.ConverterTools.getLong;
 
 public class SimilarColorsConverter implements Converter<List<RankSimilarity>> {
 
-    public static final String RANK_SIMILARITY = "rank_similarity";
+    private static final String RANK_SIMILARITY = "rank_similarity";
 
     @Override
     public List<RankSimilarity> convert(String jsonString) {

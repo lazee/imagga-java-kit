@@ -20,7 +20,7 @@ public enum ColorIndexType {
 
     OVERALL("overall"), OBJECT("object"), BACKGROUND("background");
 
-    private String name;
+    private final String name;
 
     private ColorIndexType(String name) {
         this.name = name;
