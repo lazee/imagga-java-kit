@@ -17,16 +17,6 @@ public class APIClientTest {
     }
 
     @Test
-    public void testImplode() throws Exception {
-        Assert.assertEquals("1,2,3,4", apiClient.implode(Arrays.asList("1","2","3","4"),","));
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testImplodeNull() throws Exception {
-        Assert.assertNull(apiClient.implode(null, null));
-    }
-
-    @Test
     public void testGenerateSig() throws Exception {
         Method m = new Method("imagga.process.crop");
         m.addParam("api_key", "acc_c652fbf4");

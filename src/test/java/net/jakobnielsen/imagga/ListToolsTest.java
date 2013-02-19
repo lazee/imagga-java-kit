@@ -16,14 +16,21 @@
 
 package net.jakobnielsen.imagga;
 
-public class ImaggaException extends RuntimeException {
+import org.junit.Assert;
+import org.junit.Test;
 
-   public ImaggaException(String message) {
-        super(message);
+import java.util.Arrays;
+
+public class ListToolsTest {
+
+    @Test
+    public void testImplode() throws Exception {
+        Assert.assertEquals("1,2,3,4", ListTools.implode(Arrays.asList("1", "2", "3", "4"), ","));
     }
 
-    public ImaggaException(String message, Throwable cause) {
-        super(message, cause);
+    @Test(expected = IllegalArgumentException.class)
+    public void testImplodeNull() throws Exception {
+        Assert.assertNull(ListTools.implode(null, null));
     }
 
 }

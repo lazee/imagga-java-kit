@@ -14,16 +14,29 @@
  * limitations under the License.
  */
 
-package net.jakobnielsen.imagga;
+package net.jakobnielsen.imagga.crop_slice.bean;
 
-public class ImaggaException extends RuntimeException {
+public class Resolution {
 
-   public ImaggaException(String message) {
-        super(message);
+    private final int width;
+
+    private final int height;
+
+    public Resolution(int width, int height) {
+        this.width = width;
+        this.height = height;
     }
 
-    public ImaggaException(String message, Throwable cause) {
-        super(message, cause);
+    public int getWidth() {
+        return width;
     }
 
+    public int getHeight() {
+        return height;
+    }
+
+    @Override
+    public String toString() {
+        return width + "," + height;
+    }
 }

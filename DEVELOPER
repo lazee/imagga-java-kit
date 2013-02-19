@@ -9,6 +9,8 @@ imagga-java-kit.
 imagga.key=<YOUR KEY>
 imagga.secret=<YOUR SECRET>
 imagga.endpoint=<YOUR ENDPOINT>
+imagga.connection.timeout=0
+imagga.read.timeout=0
 
 2. Run integrations test : imagga-java-kit> mvn -Denv=integration test
 

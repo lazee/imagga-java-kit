@@ -47,10 +47,8 @@ public class SmartCroppingConverterTest extends AbstractConverterTester {
         Assert.assertEquals(2, smartCropping1.getCroppings().size());
         Cropping cropping1 = smartCropping1.getCroppings().get(0);
         Assert.assertNotNull(cropping1);
-        Assert.assertNotNull(cropping1.getTargetWidth());
-        Assert.assertEquals(50, cropping1.getTargetWidth().intValue());
-        Assert.assertNotNull(cropping1.getTargetHeight());
-        Assert.assertEquals(49, cropping1.getTargetHeight().intValue());
+        Assert.assertEquals(50, cropping1.getTargetResolution().getWidth());
+        Assert.assertEquals(49, cropping1.getTargetResolution().getHeight());
         Region region1 = cropping1.getRegion();
         Assert.assertNotNull(region1);
         Assert.assertNotNull(region1.getX1());

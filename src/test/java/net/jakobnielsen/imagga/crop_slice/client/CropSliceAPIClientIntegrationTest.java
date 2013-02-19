@@ -3,6 +3,7 @@ package net.jakobnielsen.imagga.crop_slice.client;
 import net.jakobnielsen.imagga.client.APIClientConfig;
 import net.jakobnielsen.imagga.crop_slice.bean.ApiUsage;
 import net.jakobnielsen.imagga.crop_slice.bean.DivisionRegion;
+import net.jakobnielsen.imagga.crop_slice.bean.Resolution;
 import net.jakobnielsen.imagga.crop_slice.bean.SmartCropping;
 import org.junit.Assert;
 import org.junit.Before;
@@ -33,7 +34,7 @@ public class CropSliceAPIClientIntegrationTest {
     public void testSmartCroppingByUrls() {
         List<SmartCropping> lst = client.smartCroppingByUrls(
                 Arrays.asList("http://www.jakobnielsen.net/etc/images/cool-cartoon-291732.png"),
-                Arrays.asList("50", "50"), true);
+                Arrays.asList(new Resolution(50, 50)), true);
         Assert.assertNotNull(lst);
     }
 

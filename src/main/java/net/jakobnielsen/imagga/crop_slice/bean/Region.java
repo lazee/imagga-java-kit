@@ -1,35 +1,51 @@
+/*
+ * Copyright 2013 Jakob Vad Nielsen
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package net.jakobnielsen.imagga.crop_slice.bean;
 
 public class Region {
 
-    private final Long x1;
+    private final Integer x1;
 
-    private final Long y1;
+    private final Integer y1;
 
-    private final Long x2;
+    private final Integer x2;
 
-    private final Long y2;
+    private final Integer y2;
 
-    public Region(Long x1, Long y1, Long x2, Long y2) {
+    public Region(Integer x1, Integer y1, Integer x2, Integer y2) {
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
         this.y2 = y2;
     }
 
-    public Long getX1() {
+    public Integer getX1() {
         return x1;
     }
 
-    public Long getY1() {
+    public Integer getY1() {
         return y1;
     }
 
-    public Long getX2() {
+    public Integer getX2() {
         return x2;
     }
 
-    public Long getY2() {
+    public Integer getY2() {
         return y2;
     }
 }
