@@ -39,7 +39,7 @@ public class ColorAPIClient extends APIClient {
     }
 
     protected String colorsByUrlsAsJson(ColorsByUrlsRequest request) {
-        Method method = new Method("imagga.colorseach.extract");
+        Method method = new Method("imagga.colorsearch.extract");
 
         List<String> urls = new ArrayList<String>();
         List<String> ids = new ArrayList<String>();
@@ -58,20 +58,13 @@ public class ColorAPIClient extends APIClient {
         return callMethod(method);
     }
 
-    /**
-     *
-     * @param request
-     * @return
-     * @throws net.jakobnielsen.imagga.ImaggaException If data couldn't be fetched from the Imagga service or if parsing
-     * failed.
-     */
     public List<ColorResult> colorsByUrls(ColorsByUrlsRequest request) {
         ColorsConverter converter = new ColorsConverter();
         return converter.convert(colorsByUrlsAsJson(request));
     }
 
     protected String rankSimilarColorAsJson(RankSimilarColorRequest request) {
-        Method method = new Method("imagga.colorseach.rank");
+        Method method = new Method("imagga.colorsearch.rank");
 
         List<String> colorVector = new ArrayList<String>();
         for (Color c : request.getColorVector()) {
@@ -90,13 +83,6 @@ public class ColorAPIClient extends APIClient {
         return callMethod(method);
     }
 
-    /**
-     *
-     * @param request
-     * @return
-     * @throws net.jakobnielsen.imagga.ImaggaException If data couldn't be fetched from the Imagga service or if parsing
-     * failed.
-     */
     public List<RankSimilarity> rankSimilarColor(RankSimilarColorRequest request) {
         SimilarColorsConverter converter = new SimilarColorsConverter();
         return converter.convert(rankSimilarColorAsJson(request));
