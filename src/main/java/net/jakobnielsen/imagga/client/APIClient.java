@@ -66,11 +66,19 @@ public class APIClient {
         return apiService;
     }
 
-    String getServerAddr() {
+    public APIClientConfig getApiConfig() {
+        return apiConfig;
+    }
+
+    public String getServerAddr() {
         return getApiUrl() + "/" + getApiService() + ".php";
     }
 
     protected String callMethod(Method method) throws APIClientException {
+        return callMethod(method, "application/x-www-form-urlencoded");
+    }
+
+    protected String callMethod(Method method, String contentType) throws APIClientException {
         try {
             String postString = createPostString(method);
 
@@ -80,7 +88,7 @@ public class APIClient {
             connection.setDoInput(true);
             connection.setInstanceFollowRedirects(false);
             connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            connection.setRequestProperty("Content-Type", contentType);
             connection.setRequestProperty("Charset", ApiConstants.CHARSET);
             connection.setRequestProperty("Content-Length", Integer.toString(postString.getBytes().length));
             connection.setRequestProperty("User-Agent", "Crop & Slice API JAVA Client");
@@ -184,6 +192,6 @@ public class APIClient {
         } catch (java.security.NoSuchAlgorithmException n) {
             return null;
         }
-        return result.toString().toLowerCase(); // Imagga expects lowercase characters
+        return result.toString().toLowerCase();
     }
 }

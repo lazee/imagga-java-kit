@@ -29,7 +29,6 @@ import net.jakobnielsen.imagga.crop_slice.convert.ApiUsageConverter;
 import net.jakobnielsen.imagga.crop_slice.convert.DivisionRegionConverter;
 import net.jakobnielsen.imagga.crop_slice.convert.SmartCroppingConverter;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -60,17 +59,16 @@ public class CropSliceAPIClient extends APIClient {
     /**
      * Get the smart cropping coordinates from the Imagga service for a given list of images.
      *
-     * @param urlsToProcess List of (one or more) public image URLs to be smart-cropped.
-     * @param resolutionsList  list of (one or more) width and height pairs defining the target size
-     *                         (the size that the images should be resized to).
-     *                          If this parameter is set to <code>null</code> the
-     *                         system will suggest croppings that cover the main parts of what is considered visually
-     *                         interesting in the given images.
-     * @param noScaling If set to <code>true</code> the system will keep strictly to the specified resolutions and
-     *                  not only to their aspect ratios. Otherwise, if its value is <code>false</code>,
-     *                  the system actually suggests the maximum rectangle with the same aspect ratio as the required
-     *                  resolution, so that the API user will practically get a combination of cropping and
-     *                  thumbnailing at the same time.
+     * @param urlsToProcess   List of (one or more) public image URLs to be smart-cropped.
+     * @param resolutionsList list of (one or more) width and height pairs defining the target size (the size that the
+     *                        images should be resized to). If this parameter is set to <code>null</code> the system
+     *                        will suggest croppings that cover the main parts of what is considered visually
+     *                        interesting in the given images.
+     * @param noScaling       If set to <code>true</code> the system will keep strictly to the specified resolutions and
+     *                        not only to their aspect ratios. Otherwise, if its value is <code>false</code>, the system
+     *                        actually suggests the maximum rectangle with the same aspect ratio as the required
+     *                        resolution, so that the API user will practically get a combination of cropping and
+     *                        thumbnailing at the same time.
      * @return List of smart cropping results.
      * @throws net.jakobnielsen.imagga.ImaggaException If data couldn't be fetched from the Imagga service or if parsing
      * failed.
@@ -88,18 +86,48 @@ public class CropSliceAPIClient extends APIClient {
     }
 
     /**
+     * Get the smart cropping coordinates from the Imagga service for a given list of images.
+     *
+     * @param uploadCode       A valid upload code from the Imagga Upload For Processing service.
+     * @param deleteAfterwards Chose whether the uploaded image should be deleted on the Imagga servers.
+     * @param resolutionsList  list of (one or more) width and height pairs defining the target size (the size that the
+     *                         images should be resized to). If this parameter is set to <code>null</code> the system
+     *                         will suggest croppings that cover the main parts of what is considered visually
+     *                         interesting in the given images.
+     * @param noScaling        If set to <code>true</code> the system will keep strictly to the specified resolutions
+     *                         and not only to their aspect ratios. Otherwise, if its value is <code>false</code>, the
+     *                         system actually suggests the maximum rectangle with the same aspect ratio as the required
+     *                         resolution, so that the API user will practically get a combination of cropping and
+     *                         thumbnailing at the same time.
+     * @return List of smart cropping results.
+     * @throws net.jakobnielsen.imagga.ImaggaException If data couldn't be fetched from the Imagga service or if parsing
+     * failed.
+     */
+    public List<SmartCropping> smartCroppingByUploadCode(String uploadCode, boolean deleteAfterwards,
+            List<Resolution> resolutionsList, boolean noScaling) {
+        SmartCroppingConverter converter = new SmartCroppingConverter();
+        Method method = new Method("imagga.process.crop");
+        method.addParam("upload_code", uploadCode);
+        method.addParam("delete_afterwards", deleteAfterwards ? TRUE_VALUE : FALSE_VALUE);
+        if (resolutionsList != null) {
+            method.addParam("resolutions", ListTools.implode(resolutionsList));
+        }
+        method.addParam("no_scaling", noScaling ? TRUE_VALUE : FALSE_VALUE);
+        return converter.convert(callMethod(method));
+    }
+
+    /**
      * Get the smart cropping coordinates from the Imagga service for a given image url.
      *
      * @param urlToProcess A public image URL to be smart-cropped.
-     * @param resolution  A width and height pair defining the target size (the size that the images should be
-     *                    resized to). If this parameter is set to <code>null</code> the system will suggest
-     *                    croppings that cover the main parts of what is considered visually interesting in the given
-     *                    images.
-     * @param noScaling If set to <code>true</code> the system will keep strictly to the specified resolutions and
-     *                  not only to their aspect ratios. Otherwise, if its value is <code>false</code>,
-     *                  the system actually suggests the maximum rectangle with the same aspect ratio as the required
-     *                  resolution, so that the API user will practically get a combination of cropping and
-     *                  thumbnailing at the same time.
+     * @param resolution   A width and height pair defining the target size (the size that the images should be resized
+     *                     to). If this parameter is set to <code>null</code> the system will suggest croppings that
+     *                     cover the main parts of what is considered visually interesting in the given images.
+     * @param noScaling    If set to <code>true</code> the system will keep strictly to the specified resolutions and
+     *                     not only to their aspect ratios. Otherwise, if its value is <code>false</code>, the system
+     *                     actually suggests the maximum rectangle with the same aspect ratio as the required
+     *                     resolution, so that the API user will practically get a combination of cropping and
+     *                     thumbnailing at the same time.
      * @return List of smart cropping results.
      * @throws net.jakobnielsen.imagga.ImaggaException If data couldn't be fetched from the Imagga service or if parsing
      * failed.
