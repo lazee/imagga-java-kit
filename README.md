@@ -42,11 +42,6 @@ List<SmartCropping> lst = client.smartCroppingByUploadCode(
                         true,
                         Arrays.asList(new Resolution(50, 50)),
                         true);
-
-// Get smart croppings for the given upload code
-List<SmartCropping> smartCroppings = client.smartCroppingByUrls(
-                Arrays.asList("http://www.jakobnielsen.net/etc/images/cool-cartoon-291732.png"),
-                Arrays.asList("50", "50", "110", "100"), true);
 ```
 
 
