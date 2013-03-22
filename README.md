@@ -16,7 +16,7 @@ Using the Imagga Smart Cropping and Collage Slicing API
 -------------------------------------------------------
 Please read the Imagga documentation for this API before continuing (http://imagga.com/api/docs/smart-cropping-collage-slicing.html)
 
-### Smart Cropping API Request
+### Smart Cropping API Request By Urls
 
 ```java
 // Initialize the client with the configuration you have received from Imagga.
@@ -27,6 +27,28 @@ List<SmartCropping> smartCroppings = client.smartCroppingByUrls(
                 Arrays.asList("http://www.jakobnielsen.net/etc/images/cool-cartoon-291732.png"),
                 Arrays.asList("50", "50", "110", "100"), true);
 ```
+
+### Smart Cropping API Request By Upload Code
+
+```java
+// Initialize the upload client with the configuration you have received from Imagga.
+UploadClient uploadClient = new UploadClient(new APIClientConfig(myApiKey, myApiSecret, myApiEndpoint));
+
+// Initialize the client with the configuration you have received from Imagga.
+CropSliceAPIClient client = new CropSliceAPIClient(new APIClientConfig(myApiKey, myApiSecret, myApiEndpoint));
+
+List<SmartCropping> lst = client.smartCroppingByUploadCode(
+                        uploadClient.uploadForProcessing(new File("/tmp/myimage.png"),
+                        true,
+                        Arrays.asList(new Resolution(50, 50)),
+                        true);
+
+// Get smart croppings for the given upload code
+List<SmartCropping> smartCroppings = client.smartCroppingByUrls(
+                Arrays.asList("http://www.jakobnielsen.net/etc/images/cool-cartoon-291732.png"),
+                Arrays.asList("50", "50", "110", "100"), true);
+```
+
 
 ### Collage Slicing API Request
 
