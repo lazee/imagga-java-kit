@@ -25,6 +25,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -41,6 +42,11 @@ public class UploadClient extends APIClient {
     }
 
     public String uploadForProcessing(File imageFile) throws IOException {
+        return uploadForProcessing(new FileInputStream(imageFile), imageFile.getName());
+    }
+
+    // TODO : Create a general HTTP client for the project, instead of having two different ones.
+    public String uploadForProcessing(InputStream inputStream, String fileName) throws IOException {
         String boundary = "===" + System.currentTimeMillis() + "===";
         URL url = new URL(getServerAddr());
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -58,16 +64,14 @@ public class UploadClient extends APIClient {
         PrintWriter writer = new PrintWriter(new OutputStreamWriter(outputStream, ApiConstants.CHARSET), true);
 
         // Add file
-        String fileName = imageFile.getName();
         writer.append("--" + boundary).append(LINE_FEED);
         writer.append("Content-Disposition: form-data; name=\"file\"; filename=\"" + fileName + "\"").append(LINE_FEED);
         writer.append("Content-Type: " +  connection.guessContentTypeFromName(fileName)).append(LINE_FEED);
         writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
         writer.append(LINE_FEED);
         writer.flush();
-        FileInputStream inputStream = new FileInputStream(imageFile);
         byte[] buffer = new byte[4096];
-        int bytesRead = -1;
+        int bytesRead;
         while ((bytesRead = inputStream.read(buffer)) != -1) {
             outputStream.write(buffer, 0, bytesRead);
         }
