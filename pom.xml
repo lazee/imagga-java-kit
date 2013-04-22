@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.jakobnielsen</groupId>
     <artifactId>imagga-java-kit</artifactId>
-    <version>0.3</version>
+    <version>0.4-SNAPSHOT</version>
     <name>imagga-java-kit</name>
     <description>Imagga Java Kit</description>
     <url>https://github.com/lazee/imagga-java-kit</url>
