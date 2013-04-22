@@ -9,6 +9,7 @@ Make sure to read the Imagga Technical Documentation before using this package :
 News
 ----
 
+ * [Apr. 2013] Version 0.3 of imagga-java-kit released and deployed to official Maven repositories via Nexus. Support for upload code in the Color Extraction API methods.
  * [Mar. 2013] Version 0.2 of imagga-java-kit released and deployed to official Maven repositories via Nexus. This version supports using an upload code instead of an url for smart cropping.
  * [Feb. 2013] Version 0.1 of imagga-java-kit released and deployed to official Maven repositories via Nexus.
  
