@@ -1,3 +1,8 @@
+0.3
+===
+
+* Added support for use of upload code in the Color Extraction API methods.
+
 0.2
 ===
 
