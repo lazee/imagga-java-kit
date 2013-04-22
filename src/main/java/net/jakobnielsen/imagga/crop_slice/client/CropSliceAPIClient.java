@@ -107,8 +107,8 @@ public class CropSliceAPIClient extends APIClient {
             List<Resolution> resolutionsList, boolean noScaling) {
         SmartCroppingConverter converter = new SmartCroppingConverter();
         Method method = new Method("imagga.process.crop");
-        method.addParam("upload_code", uploadCode);
-        method.addParam("delete_afterwards", deleteAfterwards ? TRUE_VALUE : FALSE_VALUE);
+        method.addParam(ApiConstants.UPLOAD_CODE, uploadCode);
+        method.addParam(ApiConstants.DELETE_AFTERWARDS, deleteAfterwards ? TRUE_VALUE : FALSE_VALUE);
         if (resolutionsList != null) {
             method.addParam("resolutions", ListTools.implode(resolutionsList));
         }

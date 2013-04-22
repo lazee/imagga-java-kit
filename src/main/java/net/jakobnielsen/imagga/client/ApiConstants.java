@@ -28,6 +28,10 @@ public class ApiConstants {
 
     public static final String URLS = "urls";
 
+    public static final String UPLOAD_CODE = "upload_code";
+
+    public static final String DELETE_AFTERWARDS = "delete_afterwards";
+
 
     private ApiConstants() {
         // Intentional

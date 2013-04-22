@@ -16,26 +16,30 @@
 
 package net.jakobnielsen.imagga.color.client;
 
-import net.jakobnielsen.imagga.color.bean.IndexableImage;
+public abstract class AbstractColorsRequest {
 
-import java.util.ArrayList;
-import java.util.List;
+    private boolean extractOverallColors;
 
-public class ColorsByUrlsRequest extends AbstractColorsRequest {
+    private boolean extractObjectColors;
 
-    private List<IndexableImage> urlsToProcess;
-
-    public ColorsByUrlsRequest() {
-        super();
-        urlsToProcess = new ArrayList<IndexableImage>();
+    public AbstractColorsRequest() {
+        extractObjectColors = true;
+        extractOverallColors = true;
     }
 
-    public void setUrlsToProcess(List<IndexableImage> urlsToProcess) {
-        this.urlsToProcess = urlsToProcess != null ? urlsToProcess : new ArrayList<IndexableImage>();
+    public void setExtractOverallColors(boolean extractOverallColors) {
+        this.extractOverallColors = extractOverallColors;
     }
 
-    public List<IndexableImage> getUrlsToProcess() {
-        return urlsToProcess;
+    public void setExtractObjectColors(boolean extractObjectColors) {
+        this.extractObjectColors = extractObjectColors;
     }
 
+    public boolean isExtractOverallColors() {
+        return extractOverallColors;
+    }
+
+    public boolean isExtractObjectColors() {
+        return extractObjectColors;
+    }
 }

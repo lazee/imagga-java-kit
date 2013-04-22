@@ -34,12 +34,20 @@ import static net.jakobnielsen.imagga.ListTools.LIST_SEPARATOR;
 
 public class ColorAPIClient extends APIClient {
 
+    public static final String EXTRACT_OVERALL_COLORS = "extract_overall_colors";
+
+    public static final String EXTRACT_OBJECT_COLORS = "extract_object_colors";
+
+    public static final String IMAGGA_COLORSEARCH_EXTRACT = "imagga.colorsearch.extract";
+
+    public static final String IMAGGA_COLORSEARCH_RANK = "imagga.colorsearch.rank";
+
     protected ColorAPIClient(APIClientConfig apiConfig) {
         super(apiConfig, "colorsearchserver");
     }
 
     protected String colorsByUrlsAsJson(ColorsByUrlsRequest request) {
-        Method method = new Method("imagga.colorsearch.extract");
+        Method method = new Method(IMAGGA_COLORSEARCH_EXTRACT);
 
         List<String> urls = new ArrayList<String>();
         List<String> ids = new ArrayList<String>();
@@ -53,8 +61,8 @@ public class ColorAPIClient extends APIClient {
         if (ids != null && ids.size() > 0) {
             method.addParam("ids", ids);
         }
-        method.addParam("extract_overall_colors", request.isExtractOverallColors() ? TRUE_VALUE : FALSE_VALUE);
-        method.addParam("extract_object_colors", request.isExtractObjectColors() ? TRUE_VALUE : FALSE_VALUE);
+        method.addParam(EXTRACT_OVERALL_COLORS, request.isExtractOverallColors() ? TRUE_VALUE : FALSE_VALUE);
+        method.addParam(EXTRACT_OBJECT_COLORS, request.isExtractObjectColors() ? TRUE_VALUE : FALSE_VALUE);
         return callMethod(method);
     }
 
@@ -63,8 +71,27 @@ public class ColorAPIClient extends APIClient {
         return converter.convert(colorsByUrlsAsJson(request));
     }
 
+    protected String colorsByUploadCodeAsJson(ColorsByUploadCodeRequest request) {
+        Method method = new Method(IMAGGA_COLORSEARCH_EXTRACT);
+
+        method.addParam(ApiConstants.UPLOAD_CODE, request.getUploadCode());
+        method.addParam(ApiConstants.DELETE_AFTERWARDS, request.isDeleteAfterwords() ? TRUE_VALUE : FALSE_VALUE);
+        if (request.getImageId() != null) {
+            List<String> ids = new ArrayList<String>();
+            ids.add(request.getImageId().toString());
+        }
+        method.addParam(EXTRACT_OVERALL_COLORS, request.isExtractOverallColors() ? TRUE_VALUE : FALSE_VALUE);
+        method.addParam(EXTRACT_OBJECT_COLORS, request.isExtractObjectColors() ? TRUE_VALUE : FALSE_VALUE);
+        return callMethod(method);
+    }
+
+    public List<ColorResult> colorsByUploadCode(ColorsByUploadCodeRequest request) {
+        ColorsConverter converter = new ColorsConverter();
+        return converter.convert(colorsByUploadCodeAsJson(request));
+    }
+
     protected String rankSimilarColorAsJson(RankSimilarColorRequest request) {
-        Method method = new Method("imagga.colorsearch.rank");
+        Method method = new Method(IMAGGA_COLORSEARCH_RANK);
 
         List<String> colorVector = new ArrayList<String>();
         for (Color c : request.getColorVector()) {

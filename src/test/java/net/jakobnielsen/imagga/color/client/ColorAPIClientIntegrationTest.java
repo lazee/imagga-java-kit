@@ -7,10 +7,13 @@ import net.jakobnielsen.imagga.color.bean.ColorResult;
 import net.jakobnielsen.imagga.color.bean.IndexableImage;
 import net.jakobnielsen.imagga.color.bean.Info;
 import net.jakobnielsen.imagga.color.bean.RankSimilarity;
+import net.jakobnielsen.imagga.upload.client.UploadClient;
+import net.jakobnielsen.imagga.upload.client.UploadClientIntegrationTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -49,6 +52,31 @@ public class ColorAPIClientIntegrationTest {
         Assert.assertNotNull(info);
         Assert.assertNotNull(info.getBackgroundColors());
         Assert.assertEquals(3, info.getBackgroundColors().size());
+    }
+
+    @Test
+    public void testColorsByUploadCode() throws IOException {
+        UploadClient uploadClient = new UploadClient(APIClientConfig.load());
+        File f = UploadClientIntegrationTest.createTestFile();
+
+        ColorsByUploadCodeRequest request = new ColorsByUploadCodeRequest();
+        request.setUploadCode(uploadClient.uploadForProcessing(f));
+        request.setImageId(2);
+        request.setDeleteAfterwords(true);
+        request.setExtractObjectColors(true);
+        request.setExtractOverallColors(true);
+
+        List<ColorResult> lst = client.colorsByUploadCode(request);
+        Assert.assertNotNull(lst);
+        Assert.assertEquals(1, lst.size());
+
+        ColorResult cr = lst.get(0);
+        Assert.assertNotNull(cr);
+        Assert.assertTrue(cr.getUrl().contains(".png"));
+        Info info = cr.getInfo();
+        Assert.assertNotNull(info);
+        Assert.assertNotNull(info.getBackgroundColors());
+        Assert.assertEquals(2, info.getBackgroundColors().size());
     }
 
     @Test
