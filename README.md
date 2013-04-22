@@ -9,7 +9,8 @@ Make sure to read the Imagga Technical Documentation before using this package :
 News
 ----
 
- * Version 0.1 of imagga-java-kit released and deployed to official Maven repositories via Nexus.
+ * [Mar. 2013] Version 0.2 of imagga-java-kit released and deployed to official Maven repositories via Nexus. This version supports using an upload code instead of an url for smart cropping.
+ * [Feb. 2013] Version 0.1 of imagga-java-kit released and deployed to official Maven repositories via Nexus.
  
 
 Using the Imagga Smart Cropping and Collage Slicing API
