@@ -59,7 +59,7 @@ List<DivisionRegion> divisionRegions = client.divisionRegionsByUrls(
 Using the Imagga Color Extraction and Multi-Color Search API
 ------------------------------------------------------------
 
-### Color Extraction API Request
+### Color Extraction API Request By Urls
 
 ```java
 // Initialize the client with the configuration you have received from Imagga.
@@ -72,6 +72,25 @@ request.setUrlsToProcess(Arrays.asList(
     new IndexableImage("http://www.toondoo.com/public/l/a/z/lazee/toons/cool-cartoon-152229.png", 101)));
 
 List<ColorResult> colorResults = client.colorsByUrls(request);
+```
+
+### Color Extraction API Request By Upload Code
+
+```java
+// Initialize the upload client with the configuration you have received from Imagga.
+UploadClient uploadClient = new UploadClient(new APIClientConfig(myApiKey, myApiSecret, myApiEndpoint));
+
+// Initialize the client with the configuration you have received from Imagga.
+ColorAPIClient client = new ColorAPIClient(new APIClientConfig(myApiKey, myApiSecret, myApiEndpoint));
+
+ColorsByUploadCodeRequest request = new ColorsByUploadCodeRequest();
+        request.setUploadCode(uploadClient.uploadForProcessing(new File("/tmp/myimage.png"));
+        request.setImageId(2);
+        request.setDeleteAfterwords(true);
+        request.setExtractObjectColors(true);
+        request.setExtractOverallColors(true);
+
+List<ColorResult> lst = client.colorsByUploadCode(request);
 ```
 
 ### Multi-Color Search API Request
