@@ -123,7 +123,7 @@ Include this in your project pom
   <dependency>
     <groupId>net.jakobnielsen</groupId>
     <artifactId>imagga-java-kit</artifactId>
-    <version>0.1</version>
+    <version>0.3</version>
   </dependency>
 </dependencies>
 ```
