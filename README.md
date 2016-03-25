@@ -1,7 +1,7 @@
 Imagga Java Kit
 ===============
 
-** This repository is no longer maintained as Imagga now provide their own documentation on how to use their API with Java **
+__This repository is no longer maintained as Imagga now provide their own documentation on how to use their API with Java__
 
 This toolkit is a Java wrapper around the Imagga (http://imagga.com) Rest APIs. It comes with no guarantees other than
 it will do its best to serve you well.
